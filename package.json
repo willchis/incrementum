@@ -1,0 +1,29 @@
+{
+  "name": "incrementum",
+  "version": "1.0.0",
+  "description": "A JS Canvas playground/sandbox.",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willchis/incrementum.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Canvas",
+    "JS",
+    "HTML5"
+  ],
+  "author": "Will Chis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willchis/incrementum/issues"
+  },
+  "homepage": "https://github.com/willchis/incrementum#readme"
+}
