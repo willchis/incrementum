@@ -9,9 +9,8 @@ var KEYCODE_W = 87;			//usefull keycode
 var KEYCODE_A = 65;			//usefull keycode
 var KEYCODE_D = 68;			//usefull keycode
 var KEYCODE_S = 83;			//usefull keycode
-var KEYCODE_SPACE = 32;			//usefull keycode
 
-var spaceHeld;			//is the user holding a space
+var spaceTapped;			//did the user tap space
 var lfHeld;				//is the user holding the left command
 var rtHeld;				//is the user holding the right command
 var upHeld;			//is the user holding the up command
@@ -19,16 +18,20 @@ var dnHeld;			//is the user holding the down command
 var spaceHeld;		// has the user pressed space
 
 // Globals
-var him, 
-    stage;
+let him, 
+    stage,
+    treeGenerator;
 
 function init() {
-    console.log('foo');
     // create a new stage and point it at our canvas:
     var canvas = document.getElementById("canvas");
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
     stage = new createjs.Stage(canvas);
+
+    treeGenerator = new TreeGenerator($(canvas), {autoSpawn: false});
+
+    treeGenerator.start();
     
     // json map data at the end of this file for ease of understanding (created on Tiled map editor)
     // mapData = mapDataJson; // could get from JSON instead when on live.
@@ -140,6 +143,11 @@ function tick() {
     if (!lfHeld && !rtHeld && !upHeld && !dnHeld) {
         him.noInput();
     }
+
+    if (spaceTapped) {
+        treeGenerator.branch(him.getPosition().x, him.getPosition().y,  0, -3, 10, 30, 0, '#ffffff');
+        spaceTapped = false;
+    }
 }
 
     // Bind keys
@@ -159,7 +167,7 @@ function handleKeyDown(e) {
         case KEYCODE_UP:	upHeld = true; return false;
         case KEYCODE_S:
         case KEYCODE_DOWN:	dnHeld = true; return false;
-        case KEYCODE_SPACE:	spaceHeld = true; return false;
+        case KEYCODE_SPACE:	spaceTapped = true; return false;
         case KEYCODE_ENTER:	 if(canvas.onclick == handleClick){ handleClick(); }return false;
     }
 }

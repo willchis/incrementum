@@ -12,6 +12,13 @@ class Him {
     getDirection() {
       return this._direction;
     }
+
+    getPosition() {
+      return { 
+        x: this._sprites.x,
+        y: this._sprites.y
+      }
+    }
     
     left() {
       this._direction = 'left';
